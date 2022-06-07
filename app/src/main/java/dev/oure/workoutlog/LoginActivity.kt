@@ -3,6 +3,7 @@ package dev.oure.workoutlog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
@@ -29,11 +30,18 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         btnLogin.setOnClickListener {
-                 validate()
+                 validateLogin()
         }
     }
-    fun validate(){
+    fun validateLogin(){
         var email = etEmail.text.toString()
         var password = etPassword.text.toString()
+//        etEmail.add
+        if (email.isBlank()){
+            tilEmail.error = "Email is required"
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            tilEmail.error = "Email is invalid"
+        }
     }
 }

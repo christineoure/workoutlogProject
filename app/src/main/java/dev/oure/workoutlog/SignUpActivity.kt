@@ -47,6 +47,7 @@ class SignUpActivity : AppCompatActivity() {
         btnSignUp.setOnClickListener {
             validate()
         }
+
     }
     fun validate(){
         var firstName = etFirstName.text.toString()
@@ -70,5 +71,9 @@ class SignUpActivity : AppCompatActivity() {
         if (confirmpassword.isBlank()){
             tilConfirmPassword.error="Required"
         }
+        if (password != confirmpassword){
+            tilConfirmPassword.error="Password Error!"
+        }
+
     }
 }
