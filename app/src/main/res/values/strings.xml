@@ -3,4 +3,7 @@
     <string name="email">Email</string>
     <string name="login">LOGIN</string>
     <string name="don_t_have_an_account_sign_up">Don\'t have an account? <u>SIGN UP</u></string>
+    <string name="profile">Profile</string>
+    <string name="plan">Plan</string>
+    <string name="track">Track</string>
 </resources>
