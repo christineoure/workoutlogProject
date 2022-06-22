@@ -8,42 +8,37 @@ import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import dev.oure.workoutlog.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var tvSignup: TextView
-    lateinit var etEmail: TextInputEditText
-    lateinit var etPassword: TextInputEditText
-    lateinit var btnLogin: Button
-    lateinit var tilEmail: TextInputLayout
-    lateinit var tilPassword: TextInputLayout
+   lateinit var binding:ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        tvSignup=findViewById(R.id.tvSignup)
-        etEmail=findViewById(R.id.etEmail)
-        etPassword=findViewById(R.id.etPassword)
-        btnLogin=findViewById(R.id.btnLogin)
-        tilEmail=findViewById(R.id.tilEmail)
-        tilPassword=findViewById(R.id.tilPassword)
-        tvSignup.setOnClickListener {
+        binding= ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.tvSignup.setOnClickListener {
             var intent =Intent(this,SignUpActivity::class.java)
             startActivity(intent)
         }
-        btnLogin.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
                  validateLogin()
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
     }
     fun validateLogin(){
-        var email = etEmail.text.toString()
-        var password = etPassword.text.toString()
+        var email = binding.etEmail.text.toString()
+        var password = binding.etPassword.text.toString()
 //        etEmail.add
         if (email.isBlank()){
-            tilEmail.error = "Email is required"
+            binding.tilEmail.error = "Email is required"
+        }
+        if (password.isBlank()){
+            binding.tilEmail.error = "Email is required"
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            tilEmail.error = "Email is invalid"
+            binding.tilEmail.error = "Email is invalid"
         }
     }
 }
