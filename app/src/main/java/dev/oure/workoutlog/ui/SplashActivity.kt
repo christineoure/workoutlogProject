@@ -1,12 +1,14 @@
-package dev.oure.workoutlog
+package dev.oure.workoutlog.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dev.oure.workoutlog.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash)
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
