@@ -3,6 +3,7 @@ package dev.oure.workoutlog.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import dev.oure.workoutlog.databinding.ActivitySignUpBinding
 import dev.oure.workoutlog.models.RegisterRequest
@@ -66,6 +67,7 @@ class SignUpActivity : AppCompatActivity() {
             binding.tilConfirmPassword.error="Password Error!"
         }
         if (!error){
+            binding.pbSignup.visibility = View.VISIBLE
             var registerRequest = RegisterRequest( firstName, secondName, phonenumber, email, password)
             makeRegistrationRequest(registerRequest)
         }
@@ -78,8 +80,8 @@ class SignUpActivity : AppCompatActivity() {
         request.enqueue(object : Callback<RegisterResponse>{
             override fun onResponse(
                 call: Call<RegisterResponse>,
-                response: Response<RegisterResponse>
-            ) {
+                response: Response<RegisterResponse>) {
+                binding.pbSignup.visibility = View.GONE
                 if (response.isSuccessful){
                     var message = response.body()?.message
                     Toast.makeText(baseContext, message, Toast.LENGTH_LONG).show()
